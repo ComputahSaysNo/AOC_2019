@@ -55,8 +55,7 @@ def part2(data):
             computers.append(IntcodeParser(deepcopy(amp_program), input_function))
 
         while not computers[4].stopped:
-            computers[current_amp].run_until_next_output()
-            last_output = computers[current_amp].outputs[-1]
+            last_output = computers[current_amp].get_next_output()
             current_amp = (current_amp + 1) % 5
 
         output = computers[4].outputs[-1]

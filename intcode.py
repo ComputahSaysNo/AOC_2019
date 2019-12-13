@@ -32,7 +32,7 @@ class IntcodeParser:
             ADJUST_BASE: (self.adjust_base, 1)
         }
         self.memory = [str(x) for x in instructions]
-        for i in range(999999):
+        for i in range(9999):
             self.memory.append('0')
         self.cir = 0
         self.stopped = False
@@ -45,10 +45,11 @@ class IntcodeParser:
         while not self.stopped:
             self.run_next_instruction()
 
-    def run_until_next_output(self):
+    def get_next_output(self):
         initOutputLen = len(self.outputs)
         while len(self.outputs) == initOutputLen and not self.stopped:
             self.run_next_instruction()
+        return self.outputs[-1]
 
     def run_next_instruction(self):
         instruction = self.memory[self.cir]

@@ -1,9 +1,6 @@
 from copy import deepcopy
 
-INPUT = [[16, -8, 13], [4, 10, 10], [17, -5, 6], [13, -3, 0]]
 INITIAL_VELOCITY = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
-
-# INPUT = [[-1, 0, 2], [2, -10, -7], [4, -8, 8], [3, 5, -1]]
 
 
 def tick_simulation(positions, velocities):
@@ -71,4 +68,5 @@ def part2(data):
     return axis_cycles
 
 
-print(part2(INPUT))
+INPUT = [[16, -8, 13], [4, 10, 10], [17, -5, 6], [13, -3, 0]]
+print(part1(INPUT), part2(INPUT))

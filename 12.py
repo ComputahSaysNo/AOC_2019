@@ -38,7 +38,7 @@ def get_energy(positions, velocities):
 
 
 def part1(data):
-    positions = data
+    positions = deepcopy(data)
     velocities = deepcopy(INITIAL_VELOCITY)
     for time in range(1000):
         output = tick_simulation(positions, velocities)

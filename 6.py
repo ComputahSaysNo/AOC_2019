@@ -53,5 +53,4 @@ def part2(data):
 
 
 INPUT = get_formatted_input(6)
-
 print(part1(INPUT), part2(INPUT))

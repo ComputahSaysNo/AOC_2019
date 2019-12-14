@@ -1,6 +1,3 @@
-INPUT = '231832-767346'
-
-
 def part1_and_2(data):
     bounds = [int(x) for x in data.split('-')]
     num_valid = [0, 0]
@@ -26,4 +23,5 @@ def part1_and_2(data):
     return num_valid
 
 
+INPUT = '231832-767346'
 print(part1_and_2(INPUT))

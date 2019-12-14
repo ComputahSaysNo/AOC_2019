@@ -20,5 +20,4 @@ def part1_and_2(data):
 
 
 INPUT = get_formatted_input(3)
-
 print(part1_and_2(INPUT))

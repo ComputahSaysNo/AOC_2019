@@ -34,8 +34,9 @@ def part1(data):
 
 
 # did this by hand lmao
-COMMANDS = "65 44 66 44 65 44 66 44 67 44 66 44 67 44 65 44 67 44 67 10 82 44 49 50 44 76 44 49 48 44 76 44 49 48 10 76 44 54 44 76 44 49 50 44 82 44 49 50 44 76 44 52 10 76 44 49 50 44 82 44 49 50 44 76 44 54 10 110 10".split(
-    " ")
+COMMANDS = "65 44 66 44 65 44 66 44 67 44 66 44 67 44 65 44 67 44 67 10 82 44 49 50 44 76 44" \
+           " 49 48 44 76 44 49 48 10 76 44 54 44 76 44 49 50 44 82 44 49 50 44 76 44 52 10 76" \
+           " 44 49 50 44 82 44 49 50 44 76 44 54 10 110 10".split(" ")
 
 
 def part2(data):
@@ -48,7 +49,6 @@ def part2(data):
         return COMMANDS[pointer - 1]
 
     robot = IntcodeComputer(data, inf)
-    robot.outputs.append(0)
     robot.run_program()
     return robot.outputs[-1]
 

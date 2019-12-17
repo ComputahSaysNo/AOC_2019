@@ -1,4 +1,4 @@
-from intcode import IntcodeParser
+from intcode import IntcodeComputer
 from processInputs import get_formatted_input
 
 
@@ -8,7 +8,7 @@ def part1_and_2(data):
         def inf():
             return i
 
-        computer = IntcodeParser(data, inf)
+        computer = IntcodeComputer(data, inf)
         computer.run_program()
         outputs.append(computer.outputs[0])
     return outputs

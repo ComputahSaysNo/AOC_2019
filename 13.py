@@ -1,12 +1,12 @@
 from processInputs import get_formatted_input
-from intcode import IntcodeParser
+from intcode import IntcodeComputer
 
 
 def part1(data):
     def inf():
         return 0
 
-    computer = IntcodeParser(data, inf)
+    computer = IntcodeComputer(data, inf)
     computer.run_program()
     programOutput = computer.outputs
     i = 0
@@ -36,7 +36,7 @@ def part2(data):
             return 1
         return 0
 
-    computer = IntcodeParser(data, inf)
+    computer = IntcodeComputer(data, inf)
     while not computer.stopped:
         tileData = []
         for i in range(3):

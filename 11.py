@@ -1,5 +1,5 @@
 from processInputs import get_formatted_input
-from intcode import IntcodeParser
+from intcode import IntcodeComputer
 
 DIRECTIONS = [(0, 1), (1, 0), (0, -1), (-1, 0)]
 
@@ -13,7 +13,7 @@ def run_turtle(initial, program):
     def input_function():
         return 1 if (current_pos in white_tiles) else 0
 
-    turtle = IntcodeParser(program, input_function)
+    turtle = IntcodeComputer(program, input_function)
     while not turtle.stopped:
         painted_tiles.add(current_pos)
         colour = turtle.get_next_output()

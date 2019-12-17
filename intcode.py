@@ -16,7 +16,7 @@ IMMEDIATE = '1'
 RELATIVE = '2'
 
 
-class IntcodeParser:
+class IntcodeComputer:
 
     def __init__(self, instructions, input_function):
         self.INSTRUCTIONS = {

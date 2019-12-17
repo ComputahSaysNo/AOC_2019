@@ -1,4 +1,4 @@
-from intcode import IntcodeParser
+from intcode import IntcodeComputer
 from processInputs import get_formatted_input
 from itertools import permutations
 from copy import deepcopy
@@ -23,7 +23,7 @@ def part1(data):
         for j in range(5):
             inputs[2 * j] = phase_setting[j]
         for amp in range(5):
-            computer = IntcodeParser(deepcopy(amp_program), input_function)
+            computer = IntcodeComputer(deepcopy(amp_program), input_function)
             computer.run_program()
             if amp == 4:
                 outputs.append(computer.outputs[0])
@@ -52,7 +52,7 @@ def part2(data):
 
         computers = []
         for x in range(5):
-            computers.append(IntcodeParser(deepcopy(amp_program), input_function))
+            computers.append(IntcodeComputer(deepcopy(amp_program), input_function))
 
         while not computers[4].stopped:
             last_output = computers[current_amp].get_next_output()

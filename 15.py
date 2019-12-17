@@ -1,5 +1,5 @@
 from processInputs import get_formatted_input
-from intcode import IntcodeParser
+from intcode import IntcodeComputer
 from copy import deepcopy
 
 
@@ -25,7 +25,7 @@ def part1(data):
         nonlocal to_input
         return to_input
 
-    turtle = IntcodeParser(data, inf)
+    turtle = IntcodeComputer(data, inf)
     walls.add((current_pos[0], current_pos[1], 3))
     while True:
         turn_left()

@@ -49,7 +49,6 @@ def part1(data):
             bounds[1] = wall[1]
         if wall[1] > bounds[3]:
             bounds[3] = wall[1]
-    print(bounds)
     maze = [[0 for j in range(bounds[2] - bounds[0] + 1)] for i in range(bounds[3] - bounds[1] + 1)]
     for wall in walls:
         if len(wall) == 3:

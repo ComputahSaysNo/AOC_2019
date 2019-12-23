@@ -32,14 +32,22 @@ class IntcodeComputer:
             ADJUST_BASE: (self.adjust_base, 1)
         }
         self.memory = [str(x) for x in instructions]
-        for i in range(9999):
-            self.memory.append('0')
+        m = {}
+        i = 0
+        for n in self.memory:
+            m[i] = n
+            i += 1
+        self.memory = m
+        # for i in range(99999):
+        #     self.memory.append('0')
         self.cir = 0
         self.stopped = False
         self.outputs = []
         self.input_function = input_function
         self.tick_cir = True
         self.relative_base = 0
+        self.manualInp = None
+        self.inpFlag = False
 
     def run_program(self):
         while not self.stopped:
@@ -65,19 +73,34 @@ class IntcodeComputer:
                 if opcode in (ADD, MULTIPLY, LESS_THAN, EQUALS) and i == 2 or opcode == INPUT:
                     data.append(int(self.memory[self.cir + 1 + i]))
                 else:
-                    data.append(int(self.memory[int(self.memory[self.cir + 1 + i])]))
+                    key = int(self.memory[self.cir + 1 + i])
+                    if key not in self.memory:
+                        data.append(0)
+                    else:
+                        data.append(int(self.memory[key]))
+
             elif mode == IMMEDIATE:
                 data.append(int(self.memory[self.cir + 1 + i]))
             elif mode == RELATIVE:
                 if opcode in (ADD, MULTIPLY, LESS_THAN, EQUALS) and i == 2 or opcode == INPUT:
                     data.append(int(self.memory[self.cir + 1 + i]) + self.relative_base)
                 else:
-                    data.append(int(self.memory[int(self.memory[self.cir + 1 + i]) + self.relative_base]))
+                    key = int(self.memory[self.cir + 1 + i]) + self.relative_base
+                    if key not in self.memory:
+                        data.append(0)
+                    else:
+                        data.append(int(self.memory[key]))
         self.INSTRUCTIONS[instruction[-2:]][0](data)
         if self.tick_cir:
             self.cir += len(data) + 1
         else:
             self.tick_cir = True
+
+    def give_next_input(self, inp):
+        self.manualInp = inp
+        self.inpFlag = True
+        while self.inpFlag and not self.stopped:
+            self.run_next_instruction()
 
     def add(self, data):
         self.memory[data[2]] = str(data[1] + data[0])
@@ -86,7 +109,12 @@ class IntcodeComputer:
         self.memory[data[2]] = str(data[1] * data[0])
 
     def input(self, data):
-        self.memory[data[0]] = str(self.input_function())
+        self.inpFlag = False
+        if self.manualInp is not None:
+            self.memory[data[0]] = self.manualInp
+            self.manualInp = None
+        else:
+            self.memory[data[0]] = str(self.input_function())
 
     def output(self, data):
         self.outputs.append(data[0])

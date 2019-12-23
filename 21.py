@@ -2,7 +2,7 @@ from processInputs import get_formatted_input
 from intcode import IntcodeComputer
 
 
-def part1_and_2(data):
+def part_1_and_2(data):
     outputs = []
     scripts = ["NOT A T \n NOT T T \n AND B T \n AND C T \n NOT T T \n AND D T \n NOT T J \n NOT J J \n WALK \n",
                "NOT C J \n AND H J \n NOT B T \n OR T J \n NOT A T \n OR T J \n AND D J \n RUN \n"]
@@ -21,4 +21,4 @@ def part1_and_2(data):
 
 
 INPUT = get_formatted_input(21)
-print(part1_and_2(INPUT))
+print(part_1_and_2(INPUT))
